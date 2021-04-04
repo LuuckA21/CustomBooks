@@ -1,9 +1,9 @@
 package me.luucka.custombook.commands.subcommands;
 
 import me.luucka.custombook.BookManager;
-import me.luucka.custombook.utils.BookErrorException;
-import me.luucka.custombook.utils.Perms;
+import me.luucka.custombook.exceptions.BookErrorException;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utils.Utils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -29,7 +29,7 @@ public class SubCmdCreate extends SubCommand {
 
     @Override
     public String getPermission() {
-        return Perms.CBOOK_CREATE;
+        return PlayerPermission.CBOOK_CREATE.getPermssion();
     }
 
     @Override

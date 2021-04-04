@@ -2,12 +2,11 @@ package me.luucka.custombook.commands.subcommands;
 
 import me.luucka.custombook.BookManager;
 import me.luucka.custombook.CustomBook;
-import me.luucka.custombook.utils.BookErrorException;
-import me.luucka.custombook.utils.Perms;
+import me.luucka.custombook.exceptions.BookErrorException;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utils.Utils;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class SubCmdDelete extends SubCommand {
 
     @Override
     public String getPermission() {
-        return Perms.CBOOK_DELETE;
+        return PlayerPermission.CBOOK_DELETE.getPermssion();
     }
 
     @Override

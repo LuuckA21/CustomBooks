@@ -2,6 +2,7 @@ package me.luucka.custombook;
 
 import me.luucka.custombook.commands.CmdCBook;
 import me.luucka.custombook.files.DataManager;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +21,14 @@ public final class CustomBook extends JavaPlugin {
         usePlaceholderAPI = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
         saveDefaultConfig();
         getCommand("cbook").setExecutor(new CmdCBook());
+        printOnEnable();
+    }
+
+    private void printOnEnable() {
+        System.out.println();
+        System.out.println(Utils.hexColor("    &#c4c4c4[&#2ce897Custom&#2c68e8Books&#c4c4c4]"));
+        System.out.println("      v" + getDescription().getVersion());
+        System.out.println();
     }
 
     public static CustomBook getInstance() {

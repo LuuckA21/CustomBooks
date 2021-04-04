@@ -1,7 +1,7 @@
 # This plugin support HEX Colors in &# pattern
 # you can use PlaceholderAPI in this plugin
 
-prefix: "&#c4c4c4[&#2ce897Custom&#2c68e8Book&#c4c4c4] "
+prefix: "&#c4c4c4[&#2ce897Custom&#2c68e8Books&#c4c4c4] "
 no-written-book: "&#ff5747You need a Written book in your main hand"
 no-writable-book: "&#ff5747You need a Writable book in your main hand"
 no-written-writable-book: "&#ff5747You need a Written OR Writable book in your main hand"

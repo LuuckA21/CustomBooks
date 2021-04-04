@@ -1,4 +1,4 @@
-package me.luucka.custombook.utils;
+package me.luucka.custombook.exceptions;
 
 public class BookErrorException extends Exception {
 

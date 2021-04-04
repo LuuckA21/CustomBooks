@@ -2,7 +2,6 @@ package me.luucka.custombook.commands;
 
 import me.luucka.custombook.CustomBook;
 import me.luucka.custombook.commands.subcommands.*;
-import me.luucka.custombook.utils.Perms;
 import me.luucka.custombook.utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
