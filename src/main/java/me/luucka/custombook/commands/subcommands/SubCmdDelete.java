@@ -5,7 +5,7 @@ import me.luucka.custombook.CustomBook;
 import me.luucka.custombook.exceptions.BookErrorException;
 import me.luucka.custombook.commands.SubCommand;
 import me.luucka.custombook.permissions.PlayerPermission;
-import me.luucka.custombook.utils.Utils;
+import me.luucka.custombook.utility.Utils;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

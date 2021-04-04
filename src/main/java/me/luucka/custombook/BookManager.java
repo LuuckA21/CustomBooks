@@ -2,7 +2,7 @@ package me.luucka.custombook;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.luucka.custombook.exceptions.BookErrorException;
-import me.luucka.custombook.utils.Utils;
+import me.luucka.custombook.utility.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

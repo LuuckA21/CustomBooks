@@ -1,7 +1,8 @@
-package me.luucka.custombook.utils;
+package me.luucka.custombook.utility;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.luucka.custombook.CustomBook;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -18,16 +19,19 @@ public class Utils {
     }
 
     public static String hexColor(String content) {
-        if (content.contains("&#")) {
-            Matcher match = pattern.matcher(content);
-            while (match.find()) {
-                String color = content.substring(match.start(), match.end());
-                content = content.replace(color, net.md_5.bungee.api.ChatColor.of(color.replaceAll("&", "")) + "");
-                match = pattern.matcher(content);
+        if (Bukkit.getVersion().contains("1.16")) {
+            if (content.contains("&#")) {
+                Matcher match = pattern.matcher(content);
+                while (match.find()) {
+                    String color = content.substring(match.start(), match.end());
+                    content = content.replace(color, net.md_5.bungee.api.ChatColor.of(color.replaceAll("&", "")) + "");
+                    match = pattern.matcher(content);
+                }
+                return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', content);
             }
-            return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', content);
+            return content;
         }
-        return content;
+        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', content);
     }
 
     public static String getString(String path) {

@@ -1,8 +1,10 @@
 package me.luucka.custombook;
 
+import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.luucka.custombook.commands.CmdCBook;
 import me.luucka.custombook.files.DataManager;
-import me.luucka.custombook.utils.Utils;
+import me.luucka.custombook.utility.Utils;
+import me.luucka.custombook.utility.VersionChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,6 +24,16 @@ public final class CustomBook extends JavaPlugin {
         saveDefaultConfig();
         getCommand("cbook").setExecutor(new CmdCBook());
         printOnEnable();
+        checkUpdates();
+    }
+
+    private void checkUpdates() {
+        if (getConfig().getBoolean("check-updates")) {
+            return;
+        }
+        if (!getDescription().getVersion().equalsIgnoreCase(VersionChecker.getVersion())) {
+            getLogger().warning("CustomBooks is out of date!");
+        }
     }
 
     private void printOnEnable() {

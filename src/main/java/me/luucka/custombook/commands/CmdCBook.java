@@ -3,7 +3,7 @@ package me.luucka.custombook.commands;
 import me.luucka.custombook.CustomBook;
 import me.luucka.custombook.commands.subcommands.*;
 import me.luucka.custombook.permissions.PlayerPermission;
-import me.luucka.custombook.utils.Utils;
+import me.luucka.custombook.utility.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
