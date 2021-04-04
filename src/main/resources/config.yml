@@ -1,0 +1,9 @@
+# This plugin support HEX Colors in &# pattern
+# you can use PlaceholderAPI in this plugin
+
+# Placeholders:
+#   %cbook_book_name%
+
+prefix: "&#c4c4c4[&#2ce897Custom&#2c68e8Book&#c4c4c4] "
+no-book: "&#ff5747You need a Written book in your main hand"
+book-created: "&#2eff3cBook %cbook_book_name% uccessful created"

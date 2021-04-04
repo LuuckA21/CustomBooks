@@ -1,0 +1,44 @@
+name: CustomBooks
+version: ${project.version}
+main: me.luucka.custombook.CustomBook
+api-version: 1.16
+authors: [ LuuckA ]
+description: Create custom book
+softdepend: [PlaceholderAPI]
+commands:
+  cbook:
+    usage: /cbook
+    description: Main command for CustomBook
+permissions:
+  cbook.*:
+    default: op
+    description: Give players with op everything by default
+    children:
+      cbook.create: true
+      cbook.delete: true
+      cbook.edit: true
+      cbook.give: true
+      cbook.open: true
+      cbook.reload: true
+      cbook.update: true
+  cbook.create:
+    default: false
+    description: Permission to use /cbook create
+  cbook.delete:
+    default: false
+    description: Permission to use /cbook delete
+  cbook.edit:
+    default: false
+    description: Permission to use /cbook edit
+  cbook.give:
+    default: false
+    description: Permission to use /cbook give
+  cbook.open:
+    default: false
+    description: Permission to use /cbook open
+  cbook.reload:
+    default: false
+    description: Permission to use /cbook reload
+  cbook.update:
+    default: false
+    description: Permission to use /cbook update

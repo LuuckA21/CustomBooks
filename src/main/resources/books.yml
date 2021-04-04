@@ -1,0 +1,8 @@
+books:
+  book1:
+    author: author
+    pages:
+      '0': |-
+        row1
+        row2
+        row3
