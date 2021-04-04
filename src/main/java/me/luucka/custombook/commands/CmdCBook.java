@@ -2,6 +2,7 @@ package me.luucka.custombook.commands;
 
 import me.luucka.custombook.CustomBook;
 import me.luucka.custombook.commands.subcommands.*;
+import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -50,7 +51,7 @@ public class CmdCBook implements TabExecutor {
                 }
             }
         } else {
-            if (!player.hasPermission(Perms.CBOOK_HELP)) {
+            if (!player.hasPermission(PlayerPermission.CBOOK_HELP.getPermssion())) {
                 player.sendMessage(Utils.msgConfig(player, Utils.getString("no-perm")));
                 return true;
             }
