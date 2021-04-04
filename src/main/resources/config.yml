@@ -1,9 +1,14 @@
 # This plugin support HEX Colors in &# pattern
 # you can use PlaceholderAPI in this plugin
 
-# Placeholders:
-#   %cbook_book_name%
-
 prefix: "&#c4c4c4[&#2ce897Custom&#2c68e8Book&#c4c4c4] "
-no-book: "&#ff5747You need a Written book in your main hand"
-book-created: "&#2eff3cBook %cbook_book_name% uccessful created"
+no-written-book: "&#ff5747You need a Written book in your main hand"
+no-writable-book: "&#ff5747You need a Writable book in your main hand"
+no-written-writable-book: "&#ff5747You need a Written OR Writable book in your main hand"
+book-exists: "&#ff5747Book already exists"
+book-not-exists: "&#ff5747Book not exists"
+book-created: "&#33ff36Book succesfully created"
+book-deleted: "&#33ff36Book succesfully deleted"
+book-updated: "&#33ff36Book succesfully updated"
+no-perm: "&#ff5747You do not have permission to run this command!"
+reload: "&#33ff36Plugin reload"

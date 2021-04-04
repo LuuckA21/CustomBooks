@@ -24,21 +24,38 @@ permissions:
   cbook.create:
     default: false
     description: Permission to use /cbook create
+    children:
+      cbook.help: true
   cbook.delete:
     default: false
     description: Permission to use /cbook delete
+    children:
+      cbook.help: true
   cbook.edit:
     default: false
     description: Permission to use /cbook edit
+    children:
+      cbook.help: true
   cbook.give:
     default: false
     description: Permission to use /cbook give
+    children:
+      cbook.help: true
   cbook.open:
     default: false
     description: Permission to use /cbook open
+    children:
+      cbook.help: true
   cbook.reload:
     default: false
     description: Permission to use /cbook reload
+    children:
+      cbook.help: true
   cbook.update:
     default: false
     description: Permission to use /cbook update
+    children:
+      cbook.help: true
+  cbook.help:
+    default: false
+    description: Permission to use /cbook for show help

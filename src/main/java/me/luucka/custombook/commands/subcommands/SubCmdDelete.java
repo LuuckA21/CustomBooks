@@ -1,9 +1,13 @@
 package me.luucka.custombook.commands.subcommands;
 
+import me.luucka.custombook.BookManager;
 import me.luucka.custombook.CustomBook;
-import me.luucka.custombook.Perms;
+import me.luucka.custombook.utils.BookErrorException;
+import me.luucka.custombook.utils.Perms;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,17 @@ public class SubCmdDelete extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        CustomBook.getInstance().dataManager.removeBook(args[1]);
+        if (args.length == 1) {
+            player.sendMessage(Utils.msgConfig(player, getSyntax()));
+            return;
+        }
+        BookManager bookManager = new BookManager(player, args[1]);
+        try {
+            bookManager.deleteBook();
+            player.sendMessage(Utils.msgConfig(player, Utils.getString("book-deleted")));
+        } catch (BookErrorException e) {
+            player.sendMessage(Utils.msgConfig(player, e.getMessage()));
+        }
     }
 
     @Override

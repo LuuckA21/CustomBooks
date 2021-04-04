@@ -1,8 +1,11 @@
 package me.luucka.custombook.commands.subcommands;
 
+import me.luucka.custombook.BookManager;
 import me.luucka.custombook.CustomBook;
-import me.luucka.custombook.Perms;
+import me.luucka.custombook.utils.BookErrorException;
+import me.luucka.custombook.utils.Perms;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -34,15 +37,19 @@ public class SubCmdUpdate extends SubCommand {
 
     @Override
     public void perform(Player player, String[] args) {
-        ItemStack newBook = player.getInventory().getItemInMainHand();
-        if (!newBook.getType().equals(Material.WRITTEN_BOOK)) {
-            player.sendMessage("Non é un libro");
+        if (args.length == 1) {
+            player.sendMessage(Utils.msgConfig(player, getSyntax()));
             return;
         }
-
-        BookMeta meta = (BookMeta) newBook.getItemMeta();
-        CustomBook.getInstance().dataManager.editBook(args[1], meta.getAuthor(), meta.getPages());
-        player.getInventory().setItemInMainHand(null);
+        ItemStack updateBook = player.getInventory().getItemInMainHand();
+        BookManager bookManager = new BookManager(player, args[1]);
+        try {
+            bookManager.updateBook(updateBook);
+            player.getInventory().setItemInMainHand(null);
+            player.sendMessage(Utils.msgConfig(player, Utils.getString("book-updated")));
+        } catch (BookErrorException e) {
+            player.sendMessage(Utils.msgConfig(player, e.getMessage()));
+        }
     }
 
     @Override

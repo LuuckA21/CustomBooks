@@ -1,8 +1,9 @@
 package me.luucka.custombook.commands.subcommands;
 
 import me.luucka.custombook.CustomBook;
-import me.luucka.custombook.Perms;
+import me.luucka.custombook.utils.Perms;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class SubCmdReload extends SubCommand {
     public void perform(Player player, String[] args) {
         CustomBook.getInstance().reloadConfig();
         CustomBook.getInstance().dataManager.reloadConfig();
-        player.sendMessage("CustomBooks reload!");
+        player.sendMessage(Utils.msgConfig(player, Utils.getString("reload")));
     }
 
     @Override

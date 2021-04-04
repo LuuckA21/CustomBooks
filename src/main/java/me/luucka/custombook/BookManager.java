@@ -1,6 +1,8 @@
 package me.luucka.custombook;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.luucka.custombook.utils.BookErrorException;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -11,94 +13,199 @@ import java.util.List;
 
 public class BookManager {
 
-    private final Player builderPlayer;
-    private final String name;
-    private final boolean isOpening;
-    private final ItemStack book;
-    private final BookMeta meta;
+    private final Player performerPlayer;
+    private final String bookName;
+    private ItemStack bookItem;
+    private BookMeta bookMeta;
 
-    public BookManager(Player player, String name, boolean isOpening) {
-        this.builderPlayer = player;
-        this.name = name;
-        this.isOpening = isOpening;
-        this.book = new ItemStack(this.isOpening ? Material.WRITTEN_BOOK : Material.WRITABLE_BOOK);
-        this.meta = (BookMeta) this.book.getItemMeta();
-        if (this.isOpening) setTitle(name);
+    public BookManager(Player performerPlayer, String bookName) {
+        this.performerPlayer = performerPlayer;
+        this.bookName = bookName;
     }
 
-    public Player getBuilderPlayer() {
-        return builderPlayer;
+    public String getBookName() {
+        return bookName;
     }
 
-    public String getName() {
-        return name;
+    public ItemStack getBookItem() {
+        this.bookItem.setItemMeta(this.bookMeta);
+        return bookItem;
     }
 
-    public ItemStack getBook() {
-        return book;
-    }
+    //------------------------------------------------------------------------------------------------------------------
 
-    public BookMeta getMeta() {
-        return meta;
-    }
+    /*
+        This getter and setter work directly with books.yml file
+     */
 
-    public void setTitle(String title) {
-        if (title.length() > 32) {
-            throw new IllegalArgumentException("The book title must be at most 32 characters");
-        }
-        meta.setTitle(title);
-    }
-
+    /**
+     *
+     * @return title from books.yml of the book with bookName
+     */
     public String getTitle() {
-        return meta.getTitle();
+        return CustomBook.getInstance().dataManager.getConfig().getString("books." + bookName + ".title");
     }
 
-    public void setAuthor(String author) {
-        meta.setAuthor(author);
+    /**
+     * Set title of a book
+     */
+    public void setTitle() {
+        CustomBook.getInstance().dataManager.getConfig().set("books." + bookName + ".title", this.bookMeta.getTitle());
+        saveBook();
     }
 
+    /**
+     *
+     * @return author from books.yml of the book with bookName
+     */
     public String getAuthor() {
-        return meta.getAuthor();
+        return CustomBook.getInstance().dataManager.getConfig().getString("books." + bookName + ".author");
     }
 
-    public void setPages(List<String> pages) {
-        meta.setPages(pages);
+    /**
+     * Set author of a book
+     */
+    public void setAuthor() {
+        CustomBook.getInstance().dataManager.getConfig().set("books." + bookName + ".author", this.bookMeta.getAuthor());
+        saveBook();
     }
 
-    public List<String> getPages() {
-        return meta.getPages();
-    }
-
-    public boolean loadFromConfig() {
-
-        if (!CustomBook.getInstance().dataManager.bookExists(this.name)) {
-            return false;
-        }
-
-        if (this.isOpening) setAuthor(CustomBook.getInstance().dataManager.getConfig().getString("books." + this.name + ".author"));
-
+    /**
+     *
+     * @return pages from books.yml of the book with bookName
+     */
+    public List<String> getPages(boolean useColors, boolean usePlaceholderAPI) {
         List<String> pages = new ArrayList<>();
-        CustomBook.getInstance().dataManager.getConfig().getConfigurationSection("books." + this.name + ".pages")
+        CustomBook.getInstance().dataManager.getConfig().getConfigurationSection("books." + bookName + ".pages")
                 .getKeys(false).forEach(p -> {
-            String page = CustomBook.getInstance().dataManager.getConfig().getString("books." + this.name + ".pages." + p);
-            if (this.isOpening) {
-                page = Utils.hexColor(page);
-                if (CustomBook.isUsePlaceholderAPI()) {
-                    page = PlaceholderAPI.setPlaceholders(this.builderPlayer, page);
-                }
-            }
+                    String page = CustomBook.getInstance().dataManager.getConfig().getString("books." + bookName + ".pages." + p);
+                    if (useColors) page = Utils.hexColor(page);
+                    if (CustomBook.isUsePlaceholderAPI()) {
+                        if (usePlaceholderAPI) page = PlaceholderAPI.setPlaceholders(this.performerPlayer, page);
+                    }
             pages.add(Integer.parseInt(p), page);
         });
-        setPages(pages);
-        if (!this.isOpening) {
-            this.meta.setDisplayName("Editing: " + this.name);
-        }
-
-        this.book.setItemMeta(this.meta);
-        return true;
+        return pages;
     }
 
-    public void openBook() {
-        builderPlayer.openBook(this.book);
+    /**
+     * Set pages of a book
+     */
+    public void setPages() {
+        for (int i = 0; i < this.bookMeta.getPages().size(); i++) {
+            CustomBook.getInstance().dataManager.getConfig().set("books." + bookName + ".pages." + i, this.bookMeta.getPages().get(i));
+        }
+
+        saveBook();
+    }
+
+    /*
+        End method working with books.yml
+     */
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    /*
+        CUD methods for books
+     */
+
+    /**
+     * Save books.yml
+     */
+    public void saveBook() {
+        CustomBook.getInstance().dataManager.saveConfig();
+        CustomBook.getInstance().dataManager.reloadConfig();
+    }
+
+    /**
+     *
+     * @return TRUE if book exists, FALSE otherwise
+     */
+    public boolean bookExists() {
+        return CustomBook.getInstance().dataManager.getConfig().contains("books." + bookName);
+    }
+
+
+    public void addBook(ItemStack newBook) throws BookErrorException {
+        // Some checks
+        if (!newBook.getType().equals(Material.WRITTEN_BOOK)) {
+            throw new BookErrorException(Utils.getString("no-written-book"));
+        }
+        if (bookExists()) {
+            throw new BookErrorException(Utils.getString("book-exists"));
+        }
+
+        // Assign newBook to bookItem and bookMeta
+        this.bookItem = newBook;
+        this.bookMeta = (BookMeta) this.bookItem.getItemMeta();
+
+        // Set Title, Author and Pages into books.yml
+        setTitle();
+        setAuthor();
+        setPages();
+
+        // Save books.yml
+        saveBook();
+    }
+
+    public void updateBook(ItemStack editBook) throws BookErrorException {
+        if (!editBook.getType().equals(Material.WRITTEN_BOOK)
+                && !editBook.getType().equals(Material.WRITABLE_BOOK)) {
+            throw new BookErrorException(Utils.getString("no-written-writable-book"));
+        }
+        if (!bookExists()) {
+            throw new BookErrorException(Utils.getString("book-not-exists"));
+        }
+
+        // Assign newBook to bookItem and bookMeta
+        this.bookItem = editBook;
+        this.bookMeta = (BookMeta) this.bookItem.getItemMeta();
+
+        // Set Title, Author and Pages into books.yml
+        if (editBook.getType().equals(Material.WRITTEN_BOOK)) {
+            setTitle();
+            setAuthor();
+        }
+        setPages();
+
+        // Save books.yml
+        saveBook();
+    }
+
+    public void deleteBook() throws BookErrorException {
+        if (!bookExists()) {
+            throw new BookErrorException(Utils.getString("book-not-exists"));
+        }
+        CustomBook.getInstance().dataManager.getConfig().set("books." + bookName, null);
+        saveBook();
+    }
+
+    /*
+        End CUD methods for books
+     */
+
+    //------------------------------------------------------------------------------------------------------------------
+
+    public void createWrittenBook() throws BookErrorException {
+        if (!bookExists()) {
+            throw new BookErrorException(Utils.getString("book-not-exists"));
+        }
+        this.bookItem = new ItemStack(Material.WRITTEN_BOOK);
+        this.bookMeta = (BookMeta) this.bookItem.getItemMeta();
+
+        this.bookMeta.setTitle(getTitle());
+        this.bookMeta.setAuthor(getAuthor());
+        this.bookMeta.setPages(getPages(true, true));
+    }
+
+    public void createWritableBook() throws BookErrorException {
+        if (!bookExists()) {
+            throw new BookErrorException(Utils.getString("book-not-exists"));
+        }
+        this.bookItem = new ItemStack(Material.WRITABLE_BOOK);
+        this.bookMeta = (BookMeta) this.bookItem.getItemMeta();
+
+        this.bookMeta.setPages(getPages(false, false));
+        this.bookMeta.setDisplayName("Editing: " + this.bookName);
     }
 }

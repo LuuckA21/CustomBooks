@@ -1,8 +1,9 @@
 package me.luucka.custombook.commands;
 
 import me.luucka.custombook.CustomBook;
-import me.luucka.custombook.Perms;
 import me.luucka.custombook.commands.subcommands.*;
+import me.luucka.custombook.utils.Perms;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -43,13 +44,17 @@ public class CmdCBook implements TabExecutor {
             for (int i = 0; i < getSubCommands().size(); i++) {
                 if (args[0].equalsIgnoreCase(getSubCommands().get(i).getName())) {
                     if (!player.hasPermission(getSubCommands().get(i).getPermission())) {
-                        player.sendMessage("You do not have permission to run this command!");
+                        player.sendMessage(Utils.msgConfig(player, Utils.getString("no-perm")));
                         return true;
                     }
                     getSubCommands().get(i).perform(player, args);
                 }
             }
         } else {
+            if (!player.hasPermission(Perms.CBOOK_HELP)) {
+                player.sendMessage(Utils.msgConfig(player, Utils.getString("no-perm")));
+                return true;
+            }
             player.sendMessage("----------------------------");
             player.sendMessage("CustomBooks commands:");
             getSubCommands().forEach(s -> {

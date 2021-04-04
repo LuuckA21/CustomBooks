@@ -2,6 +2,9 @@ package me.luucka.custombook.commands.subcommands;
 
 import me.luucka.custombook.*;
 import me.luucka.custombook.commands.SubCommand;
+import me.luucka.custombook.utils.BookErrorException;
+import me.luucka.custombook.utils.Perms;
+import me.luucka.custombook.utils.Utils;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -31,16 +34,16 @@ public class SubCmdEdit extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if (args.length == 1) {
-            player.sendMessage(Utils.elaborateMessageConfig(player, "&#ff5747 Usage: " + getSyntax()));
+            player.sendMessage(Utils.msgConfig(player, "&#ff5747 Usage: " + getSyntax()));
             return;
         }
-
-        BookManager book = new BookManager(player, args[1], false);
-        if (book.loadFromConfig()) {
-            player.getInventory().addItem(book.getBook());
-            return;
+        BookManager bookManager = new BookManager(player, args[1]);
+        try {
+            bookManager.createWritableBook();
+            player.getInventory().addItem(bookManager.getBookItem());
+        } catch (BookErrorException e) {
+            player.sendMessage(Utils.msgConfig(player, e.getMessage()));
         }
-        player.sendMessage("Book '" + args[1] + "' does not exists");
     }
 
     @Override

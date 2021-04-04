@@ -1,5 +1,6 @@
 books:
   book1:
+    title: title
     author: author
     pages:
       '0': |-

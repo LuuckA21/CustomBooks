@@ -1,4 +1,4 @@
-package me.luucka.custombook;
+package me.luucka.custombook.utils;
 
 public final class Perms {
 
@@ -17,5 +17,7 @@ public final class Perms {
     public static final String CBOOK_RELOAD = "cbook.reload";
 
     public static final String CBOOK_UPDATE = "cbook.update";
+
+    public static final String CBOOK_HELP = "cbook.help";
 
 }

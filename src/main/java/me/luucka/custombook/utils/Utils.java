@@ -1,6 +1,7 @@
-package me.luucka.custombook;
+package me.luucka.custombook.utils;
 
 import me.clip.placeholderapi.PlaceholderAPI;
+import me.luucka.custombook.CustomBook;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -41,9 +42,8 @@ public class Utils {
         return CustomBook.getInstance().getConfig().getInt(path);
     }
 
-    public static String elaborateMessageConfig(Player player, String s) {
-        s = getString("prefix") + s;
-        s = hexColor(s);
+    public static String msgConfig(Player player, String s) {
+        s = hexColor((getString("prefix") + s));
         if (CustomBook.isUsePlaceholderAPI()) {
             s = PlaceholderAPI.setPlaceholders(player, s);
         }

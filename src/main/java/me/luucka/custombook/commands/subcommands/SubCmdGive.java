@@ -1,6 +1,6 @@
 package me.luucka.custombook.commands.subcommands;
 
-import me.luucka.custombook.Perms;
+import me.luucka.custombook.utils.Perms;
 import me.luucka.custombook.commands.SubCommand;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
