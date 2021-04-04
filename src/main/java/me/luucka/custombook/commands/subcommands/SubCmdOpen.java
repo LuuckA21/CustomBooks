@@ -20,7 +20,7 @@ public class SubCmdOpen extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "open selected book";
+        return "Open selected book";
     }
 
     @Override

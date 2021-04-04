@@ -18,7 +18,7 @@ public class SubCmdEdit extends SubCommand {
 
     @Override
     public String getDescription() {
-        return "Edit a book";
+        return "Give book for editing";
     }
 
     @Override

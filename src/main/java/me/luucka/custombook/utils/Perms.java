@@ -2,8 +2,6 @@ package me.luucka.custombook.utils;
 
 public final class Perms {
 
-    //public static final String CBOOK_ = "cbook.";
-
     public static final String CBOOK_CREATE = "cbook.create";
 
     public static final String CBOOK_DELETE = "cbook.delete";
