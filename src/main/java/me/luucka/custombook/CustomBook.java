@@ -8,6 +8,8 @@ import me.luucka.custombook.utility.VersionChecker;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.logging.Level;
+
 public final class CustomBook extends JavaPlugin {
 
     private static CustomBook instance;
@@ -28,11 +30,11 @@ public final class CustomBook extends JavaPlugin {
     }
 
     private void checkUpdates() {
-        if (getConfig().getBoolean("check-updates")) {
+        if (!getConfig().getBoolean("check-updates")) {
             return;
         }
         if (!getDescription().getVersion().equalsIgnoreCase(VersionChecker.getVersion())) {
-            getLogger().warning("CustomBooks is out of date!");
+            getLogger().log(Level.INFO, "CustomBooks is out of date!");
         }
     }
 

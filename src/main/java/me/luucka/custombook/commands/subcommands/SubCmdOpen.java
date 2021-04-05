@@ -3,6 +3,7 @@ package me.luucka.custombook.commands.subcommands;
 import me.luucka.custombook.*;
 import me.luucka.custombook.commands.SubCommand;
 import me.luucka.custombook.exceptions.BookErrorException;
+import me.luucka.custombook.inventories.BookList;
 import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utility.Utils;
 import org.bukkit.entity.Player;
@@ -25,7 +26,7 @@ public class SubCmdOpen extends SubCommand {
 
     @Override
     public String getSyntax() {
-        return "/cbook " + getName() + " <bookname>";
+        return "/cbook " + getName() + " [bookname]";
     }
 
     @Override
@@ -36,7 +37,7 @@ public class SubCmdOpen extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if (args.length == 1) {
-            player.sendMessage(Utils.msgConfig(player, "&#ff5747 Usage: " + getSyntax()));
+            player.sendMessage(Utils.msgConfig(player, getSyntax()));
             return;
         }
         BookManager bookManager = new BookManager(player, args[1]);
