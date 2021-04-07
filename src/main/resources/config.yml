@@ -13,4 +13,5 @@ book-updated: "&#33ff36Book succesfully updated"
 no-perm: "&#ff5747You do not have permission to run this command!"
 reload: "&#33ff36Plugin reload"
 
+book-list-inventory-title: "BookList"
 check-updates: true

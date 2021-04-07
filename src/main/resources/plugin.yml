@@ -21,6 +21,7 @@ permissions:
       cbook.open: true
       cbook.reload: true
       cbook.update: true
+      cbook.list: true
   cbook.create:
     default: false
     description: Permission to use /cbook create
@@ -54,6 +55,11 @@ permissions:
   cbook.update:
     default: false
     description: Permission to use /cbook update
+    children:
+      cbook.help: true
+  cbook.list:
+    default: false
+    description: Permission to use /cbook list
     children:
       cbook.help: true
   cbook.help:

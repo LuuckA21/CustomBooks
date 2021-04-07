@@ -35,7 +35,7 @@ public class SubCmdDelete extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if (args.length == 1) {
-            player.sendMessage(Utils.msgConfig(player, getSyntax()));
+            player.sendMessage(Utils.msgConfig(player, "&#ff5747 Usage: " + getSyntax()));
             return;
         }
         BookManager bookManager = new BookManager(player, args[1]);

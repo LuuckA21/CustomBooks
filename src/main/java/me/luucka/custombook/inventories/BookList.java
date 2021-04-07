@@ -21,13 +21,14 @@ public class BookList {
     public BookList(Player performerPlayer) {
         this.performerPlayer = performerPlayer;
         setBooks();
+        createInventories();
     }
 
     public Inventory getInv(int i) {
         return invs.get(i);
     }
 
-    public void setBooks() {
+    private void setBooks() {
         CustomBook.getInstance().dataManager.getConfig().getConfigurationSection("books").getKeys(false).forEach(b -> {
             BookManager bm = new BookManager(performerPlayer, b);
             try {
@@ -39,9 +40,9 @@ public class BookList {
         });
     }
 
-    public void createInventories() {
+    private void createInventories() {
         if (books.size() <= 54) {
-            invs.add(Bukkit.createInventory(null, 54, "title"));
+            invs.add(Bukkit.createInventory(null, 54, Utils.getString("book-list-inventory-title")));
             for (int i = 0; i < books.size(); i++) {
                 invs.get(0).setItem(i, books.get(i));
             }

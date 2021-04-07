@@ -24,6 +24,7 @@ public class CmdCBook implements TabExecutor {
         subCommands.add(new SubCmdGive());
         subCommands.add(new SubCmdEdit());
         subCommands.add(new SubCmdUpdate());
+        subCommands.add(new SubCmdList());
     }
 
     public List<SubCommand> getSubCommands() {

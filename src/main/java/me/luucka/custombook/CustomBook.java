@@ -1,7 +1,7 @@
 package me.luucka.custombook;
 
-import me.clip.placeholderapi.updatechecker.UpdateChecker;
 import me.luucka.custombook.commands.CmdCBook;
+import me.luucka.custombook.events.EvtMenuBookListOnClick;
 import me.luucka.custombook.files.DataManager;
 import me.luucka.custombook.utility.Utils;
 import me.luucka.custombook.utility.VersionChecker;
@@ -16,6 +16,8 @@ public final class CustomBook extends JavaPlugin {
 
     public DataManager dataManager;
 
+    //public BookList menuBookList;
+
     private static boolean usePlaceholderAPI;
 
     @Override
@@ -25,6 +27,7 @@ public final class CustomBook extends JavaPlugin {
         usePlaceholderAPI = Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null;
         saveDefaultConfig();
         getCommand("cbook").setExecutor(new CmdCBook());
+        getServer().getPluginManager().registerEvents(new EvtMenuBookListOnClick(), this);
         printOnEnable();
         checkUpdates();
     }
