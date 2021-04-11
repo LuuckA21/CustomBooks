@@ -5,6 +5,7 @@ import me.luucka.custombook.events.EvtMenuBookListOnClick;
 import me.luucka.custombook.files.DataManager;
 import me.luucka.custombook.utility.Utils;
 import me.luucka.custombook.utility.VersionChecker;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,7 @@ public final class CustomBook extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EvtMenuBookListOnClick(), this);
         printOnEnable();
         checkUpdates();
+        Metrics metrics = new Metrics(this, 11016);
     }
 
     private void checkUpdates() {
