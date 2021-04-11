@@ -36,7 +36,7 @@ public class CmdCBook implements TabExecutor {
         if (!(sender instanceof Player)) {
             CustomBook.getInstance().reloadConfig();
             CustomBook.getInstance().dataManager.reloadConfig();
-            sender.sendMessage("CustomBooks reload!");
+            sender.sendMessage(Utils.hexColor(Utils.getString("prefix") + Utils.getString("reload")));
             return true;
         }
         Player player = (Player) sender;

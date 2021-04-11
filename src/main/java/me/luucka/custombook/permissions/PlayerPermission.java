@@ -3,7 +3,7 @@ package me.luucka.custombook.permissions;
 public enum PlayerPermission {
 
     CBOOK_CREATE("cbook.create"),
-    CBOOK_DELETE("cbook.create"),
+    CBOOK_DELETE("cbook.delete"),
     CBOOK_EDIT("cbook.edit"),
     CBOOK_GIVE("cbook.give"),
     CBOOK_OPEN("cbook.open"),

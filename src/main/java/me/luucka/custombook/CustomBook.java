@@ -33,11 +33,10 @@ public final class CustomBook extends JavaPlugin {
     }
 
     private void checkUpdates() {
-        if (!getConfig().getBoolean("check-updates")) {
-            return;
-        }
-        if (!getDescription().getVersion().equalsIgnoreCase(VersionChecker.getVersion())) {
-            getLogger().log(Level.INFO, "CustomBooks is out of date!");
+        if (getConfig().getBoolean("check-updates")) {
+            if (!getDescription().getVersion().equalsIgnoreCase(VersionChecker.getVersion())) {
+                getLogger().log(Level.INFO, "CustomBooks is out of date!");
+            }
         }
     }
 

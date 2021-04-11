@@ -36,7 +36,7 @@ public class SubCmdUpdate extends SubCommand {
     @Override
     public void perform(Player player, String[] args) {
         if (args.length == 1) {
-            player.sendMessage(Utils.msgConfig(player, "&#ff5747 Usage: " + getSyntax()));
+            player.sendMessage(Utils.msgConfig(player, "&#ff5747Usage: " + getSyntax()));
             return;
         }
         ItemStack updateBook = player.getInventory().getItemInMainHand();
