@@ -46,6 +46,10 @@ public class Utils {
         return CustomBook.getInstance().getConfig().getInt(path);
     }
 
+    public static boolean getBool(String path) {
+        return CustomBook.getInstance().getConfig().getBoolean(path);
+    }
+
     public static String msgConfig(Player player, String s) {
         s = hexColor((getString("prefix") + s));
         if (CustomBook.isUsePlaceholderAPI()) {

@@ -1,6 +1,7 @@
 # This plugin support HEX Colors in &# pattern
 # you can use PlaceholderAPI in this plugin
 
+# Messages
 prefix: "&#c4c4c4[&#2ce897Custom&#2c68e8Books&#c4c4c4] "
 no-written-book: "&#ff5747You need a Written book in your main hand"
 no-writable-book: "&#ff5747You need a Writable book in your main hand"
@@ -13,5 +14,13 @@ book-updated: "&#33ff36Book succesfully updated"
 no-perm: "&#ff5747You do not have permission to run this command!"
 reload: "&#33ff36Plugin reload"
 
+# Inventory book list
 book-list-inventory-title: "BookList"
+
+# Join event
+give-on-join: true
+only-first-join: true
+book-name: book1
+
+# Other
 check-updates: true
