@@ -17,10 +17,15 @@ reload: "&#33ff36Plugin reload"
 # Inventory book list
 book-list-inventory-title: "BookList"
 
-# Join event
-give-on-join: true
-only-first-join: true
-book-name: book1
+# Join events
+open:
+  on-join: true
+  first-join-only: true
+  book-name: book1
+give:
+  on-join: true
+  first-join-only: true
+  book-name: book1
 
 # Other
 check-updates: true

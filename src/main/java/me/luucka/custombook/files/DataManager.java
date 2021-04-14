@@ -17,7 +17,6 @@ public class DataManager {
 
     public DataManager() {
         saveDefaultConfig();
-        //initConfig();
     }
 
     public void reloadConfig() {

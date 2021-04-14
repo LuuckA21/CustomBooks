@@ -4,6 +4,7 @@ import me.luucka.custombook.CustomBook;
 import me.luucka.custombook.commands.subcommands.*;
 import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utility.Utils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabExecutor;
@@ -56,14 +57,15 @@ public class CmdCBook implements TabExecutor {
                 player.sendMessage(Utils.msgConfig(player, Utils.getString("no-perm")));
                 return true;
             }
-            player.sendMessage("----------------------------");
-            player.sendMessage("CustomBooks commands:");
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9-----------------------------------"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lCustom&3&lBooks &7&lCommands:"));
             getSubCommands().forEach(s -> {
                 if (player.hasPermission(s.getPermission())) {
-                    player.sendMessage(s.getSyntax() + " - " + s.getDescription());
+                    player.sendMessage(ChatColor.translateAlternateColorCodes(
+                            '&', "&b" + s.getSyntax() + " &7- " + "&3" + s.getDescription()));
                 }
             });
-            player.sendMessage("----------------------------");
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&9-----------------------------------"));
         }
         return true;
     }
