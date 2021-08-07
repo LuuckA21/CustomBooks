@@ -4,12 +4,18 @@ import me.luucka.custombook.commands.CmdCBook;
 import me.luucka.custombook.events.EvtBookOnJoin;
 import me.luucka.custombook.events.EvtMenuBookListOnClick;
 import me.luucka.custombook.files.DataManager;
+import me.luucka.custombook.menus.BookMenu;
+import me.luucka.custombook.menus.MenuUtility;
 import me.luucka.custombook.utility.VersionChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 public final class CustomBook extends JavaPlugin {
@@ -19,6 +25,10 @@ public final class CustomBook extends JavaPlugin {
     public DataManager dataManager;
 
     private static boolean _usePlaceholderAPI;
+
+    private static final HashMap<Player, MenuUtility> _menuUtilityMap = new HashMap<>();
+
+    private static final List<BookMenu> _bookMenuList = new ArrayList<>();
 
     @Override
     public void onEnable() {
@@ -67,5 +77,19 @@ public final class CustomBook extends JavaPlugin {
 
     public static boolean isUsePlaceholderAPI() {
         return _usePlaceholderAPI;
+    }
+
+    public static MenuUtility get_menuUtilityMap(Player player) {
+        MenuUtility menuUtility;
+        if (!_menuUtilityMap.containsKey(player)) {
+            menuUtility = new MenuUtility(player);
+            _menuUtilityMap.put(player, menuUtility);
+            return menuUtility;
+        }
+        return _menuUtilityMap.get(player);
+    }
+
+    public static List<BookMenu> get_bookMenuList() {
+        return _bookMenuList;
     }
 }

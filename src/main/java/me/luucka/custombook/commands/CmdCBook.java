@@ -53,7 +53,7 @@ public class CmdCBook implements TabExecutor {
                 }
             }
         } else {
-            if (!player.hasPermission(PlayerPermission.CBOOK_HELP.getPermssion())) {
+            if (!player.hasPermission(PlayerPermission.CBOOK_HELP.getPermission())) {
                 player.sendMessage(Utils.msgConfig(player, Utils.getString("no-perm")));
                 return true;
             }

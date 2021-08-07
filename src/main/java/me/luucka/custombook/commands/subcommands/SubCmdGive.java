@@ -6,9 +6,7 @@ import me.luucka.custombook.commands.SubCommand;
 import me.luucka.custombook.exceptions.BookErrorException;
 import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utility.Utils;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +29,7 @@ public class SubCmdGive extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_GIVE.getPermssion();
+        return PlayerPermission.CBOOK_GIVE.getPermission();
     }
 
     @Override

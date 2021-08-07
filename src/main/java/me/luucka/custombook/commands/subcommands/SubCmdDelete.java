@@ -29,7 +29,7 @@ public class SubCmdDelete extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_DELETE.getPermssion();
+        return PlayerPermission.CBOOK_DELETE.getPermission();
     }
 
     @Override

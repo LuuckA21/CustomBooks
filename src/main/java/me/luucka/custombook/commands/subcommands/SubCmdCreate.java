@@ -29,7 +29,7 @@ public class SubCmdCreate extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_CREATE.getPermssion();
+        return PlayerPermission.CBOOK_CREATE.getPermission();
     }
 
     @Override

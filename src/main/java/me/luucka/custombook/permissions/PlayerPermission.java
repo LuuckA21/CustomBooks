@@ -12,13 +12,13 @@ public enum PlayerPermission {
     CBOOK_HELP("cbook.help"),
     CBOOK_LIST("cbook.list");
 
-    private final String permssion;
+    private final String permission;
 
-    PlayerPermission(String permssion) {
-        this.permssion = permssion;
+    PlayerPermission(String permission) {
+        this.permission = permission;
     }
 
-    public String getPermssion() {
-        return permssion;
+    public String getPermission() {
+        return permission;
     }
 }

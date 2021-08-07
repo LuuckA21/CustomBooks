@@ -28,7 +28,7 @@ public class SubCmdEdit extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_EDIT.getPermssion();
+        return PlayerPermission.CBOOK_EDIT.getPermission();
     }
 
     @Override

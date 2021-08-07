@@ -3,7 +3,6 @@ package me.luucka.custombook.commands.subcommands;
 import me.luucka.custombook.*;
 import me.luucka.custombook.commands.SubCommand;
 import me.luucka.custombook.exceptions.BookErrorException;
-import me.luucka.custombook.inventories.BookList;
 import me.luucka.custombook.permissions.PlayerPermission;
 import me.luucka.custombook.utility.Utils;
 import org.bukkit.entity.Player;
@@ -31,7 +30,7 @@ public class SubCmdOpen extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_OPEN.getPermssion();
+        return PlayerPermission.CBOOK_OPEN.getPermission();
     }
 
     @Override
@@ -44,6 +43,7 @@ public class SubCmdOpen extends SubCommand {
         try {
             bookManager.createWrittenBook();
             player.openBook(bookManager.getBookItem());
+            CustomBook.get_menuUtilityMap(player).setCurrentPage(0);
         } catch (BookErrorException e) {
             player.sendMessage(Utils.msgConfig(player, e.getMessage()));
         }

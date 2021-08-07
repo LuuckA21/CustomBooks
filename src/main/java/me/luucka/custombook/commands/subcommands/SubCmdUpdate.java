@@ -30,7 +30,7 @@ public class SubCmdUpdate extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_UPDATE.getPermssion();
+        return PlayerPermission.CBOOK_UPDATE.getPermission();
     }
 
     @Override

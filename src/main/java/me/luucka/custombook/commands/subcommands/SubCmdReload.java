@@ -26,7 +26,7 @@ public class SubCmdReload extends SubCommand {
 
     @Override
     public String getPermission() {
-        return PlayerPermission.CBOOK_RELOAD.getPermssion();
+        return PlayerPermission.CBOOK_RELOAD.getPermission();
     }
 
     @Override
